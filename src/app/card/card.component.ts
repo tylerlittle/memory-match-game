@@ -1,13 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: "app-card",
-  templateUrl: "./card.component.html",
-  styleUrls: ["./card.component.css"]
+  selector: 'app-card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
   // public properties
-  isBack = false;
+  @Input() cardObject: any;
+  @Output() cardClickEE = new EventEmitter();
 
   // private fields
 
@@ -16,8 +17,8 @@ export class CardComponent implements OnInit {
   ngOnInit() {}
 
   // public methods
-  flipCard() {
-    this.isBack = !this.isBack;
+  onClick() {
+    this.cardClickEE.emit(this.cardObject.id);
   }
 
   // private methods

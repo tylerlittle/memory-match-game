@@ -5,8 +5,14 @@
   justify-content: center;
 }
 
-.square {
-  background-color: rgb(241, 0, 0);
-  height: 30px;
-  width: 30px;
+.match {
+  background-color: lightgreen;
+}
+
+.no-match {
+  background-color: lightsteelblue;
+}
+
+.partial {
+  background-color: lightcoral;
 }

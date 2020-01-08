@@ -1,3 +1,15 @@
-<div class="card-container" (click)="flipCard()">
-  <div [ngClass]="{ square: isBack }"></div>
+<div
+  class="card-container"
+  [ngClass]="
+    cardObject.class === 'match'
+      ? 'match'
+      : cardObject.class === 'partial'
+      ? 'partial'
+      : 'no-match'
+  "
+  (click)="onClick()"
+>
+  <div>
+    {{ cardObject.class !== 'no-match' ? cardObject.value : '' }}
+  </div>
 </div>

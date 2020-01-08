@@ -1,26 +1,12 @@
-<div class="container">
-  <div class="row">
-    <app-card class="card"></app-card>
-    <app-card class="card"></app-card>
-    <app-card class="card"></app-card>
-    <app-card class="card"></app-card>
+<ng-container *ngFor="let number of numbers; let i = index">
+  <div *ngIf="i % 4 === 0" class="row">
+    <ng-container *ngFor="let item of numbers; let j = index">
+      <app-card
+        *ngIf="j >= i && j < i + 4"
+        class="card"
+        [cardObject]="item"
+        (cardClickEE)="onCardClick($event)"
+      ></app-card>
+    </ng-container>
   </div>
-  <div class="row">
-    <app-card class="card"></app-card>
-    <app-card class="card"></app-card>
-    <app-card class="card"></app-card>
-    <app-card class="card"></app-card>
-  </div>
-  <div class="row">
-    <app-card class="card"></app-card>
-    <app-card class="card"></app-card>
-    <app-card class="card"></app-card>
-    <app-card class="card"></app-card>
-  </div>
-  <div class="row">
-    <app-card class="card"></app-card>
-    <app-card class="card"></app-card>
-    <app-card class="card"></app-card>
-    <app-card class="card"></app-card>
-  </div>
-</div>
+</ng-container>
