@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
+  cardsDisabled = false;
   numbers: any = [
     { id: 1, value: '1', class: 'no-match' },
     { id: 2, value: '1', class: 'no-match' },
@@ -24,12 +25,32 @@ export class GameComponent implements OnInit {
     { id: 15, value: '8', class: 'no-match' },
     { id: 16, value: '8', class: 'no-match' }
   ];
-  selectedCardFirst = null;
-  selectedCardSecond = null;
+
+  private selectedCardFirst = null;
+  private selectedCardSecond = null;
+  private matches = 0;
+  private timerIntervalHandler: any;
+  private timerValue = 0;
+  private animationBarProgressNode: HTMLElement;
 
   constructor() {}
 
   ngOnInit() {
+    this.animationBarProgressNode = document.getElementsByClassName(
+      'animation-bar-progress'
+    )[0] as HTMLElement;
+    this.timerIntervalHandler = setInterval(() => {
+      if (this.timerValue === 29) {
+        this.cardsDisabled = true;
+        alert('Time is up!');
+        clearInterval(this.timerIntervalHandler);
+      } else if (this.timerValue >= 19) {
+        this.animationBarProgressNode.style.backgroundColor = '#FF0000';
+        this.animationBarProgressNode.style.backgroundImage =
+          'linear-gradient(to bottom, #FF0000, #BD0000)';
+      }
+      this.timerValue += 1;
+    }, 1000);
     this.shuffleArray(this.numbers);
   }
 
@@ -55,6 +76,11 @@ export class GameComponent implements OnInit {
           (item: { id: number }) => item.id === this.selectedCardFirst.id
         );
         if (this.selectedCardFirst.value === this.selectedCardSecond.value) {
+          this.matches += 1;
+          if (this.matches === 8) {
+            clearInterval(this.timerIntervalHandler);
+            this.animationBarProgressNode.style.animationPlayState = 'paused';
+          }
           this.numbers[firstCardIndex].class = 'match';
           this.numbers[cardIndex].class = 'match';
           this.selectedCardFirst = null;

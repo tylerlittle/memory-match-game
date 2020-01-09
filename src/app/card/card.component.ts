@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class CardComponent implements OnInit {
   // public properties
   @Input() cardObject: any;
+  @Input() disabled: boolean;
   @Output() cardClickEE = new EventEmitter();
 
   // private fields

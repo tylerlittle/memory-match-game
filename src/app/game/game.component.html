@@ -1,9 +1,13 @@
+<div class="animation-bar">
+  <span class="animation-bar-progress"></span>
+</div>
 <ng-container *ngFor="let number of numbers; let i = index">
   <div *ngIf="i % 4 === 0" class="row">
     <ng-container *ngFor="let item of numbers; let j = index">
       <app-card
         *ngIf="j >= i && j < i + 4"
         class="card"
+        [disabled]="cardsDisabled"
         [cardObject]="item"
         (cardClickEE)="onCardClick($event)"
       ></app-card>

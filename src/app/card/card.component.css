@@ -5,6 +5,12 @@
   justify-content: center;
 }
 
+.isDisabled {
+  cursor: default;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .match {
   background-color: lightgreen;
 }

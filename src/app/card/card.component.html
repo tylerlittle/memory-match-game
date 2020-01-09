@@ -1,12 +1,11 @@
 <div
   class="card-container"
-  [ngClass]="
-    cardObject.class === 'match'
-      ? 'match'
-      : cardObject.class === 'partial'
-      ? 'partial'
-      : 'no-match'
-  "
+  [ngClass]="{
+    match: cardObject.class === 'match',
+    partial: cardObject.class === 'partial',
+    'no-match': cardObject.class === 'no-match',
+    isDisabled: disabled
+  }"
   (click)="onClick()"
 >
   <div>

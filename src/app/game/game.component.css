@@ -1,12 +1,44 @@
-.row {
-  display: flex;
+.animation-bar {
+  background: rbga(0, 0, 0, 0.1);
+  box-shadow: inset 0 0.1rem 0.2rem rgba(0, 0, 0, 0.25),
+    0 0.1rem rgba(255, 255, 255, 0.1);
+  display: block;
+  font-size: 0.75vh;
+  line-height: 0.75vh;
+  padding: 0.2rem;
+  position: relative;
+}
+.animation-bar span {
+  animation: progress-bar 30s linear;
+  background-color: #008fff;
+  background-image: linear-gradient(to bottom, #008fff, #004a83);
+  background-size: 100%;
+  display: inline-block;
+  height: 0.75vh;
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+  width: 100%;
 }
 
 .card {
   cursor: pointer;
   font-size: 2rem;
   flex-basis: 100%;
-  height: 24.5vh;
-  margin: 0.15vh 0.1vw 0.15vh 0.1vw;
+  height: 24vh;
+  margin: 1px;
   text-align: center;
+}
+
+.row {
+  display: flex;
+}
+
+@keyframes progress-bar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
 }
