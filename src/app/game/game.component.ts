@@ -71,16 +71,18 @@ export class GameComponent implements OnInit {
     }
 
     if (this.selectedCardFirst && this.selectedCardSecond) {
+      if (this.selectedCardFirst.value === this.selectedCardSecond.value) {
+        this.matches += 1;
+        if (this.matches === 8) {
+          clearInterval(this.timerIntervalHandler);
+          this.animationBarProgressNode.style.animationPlayState = 'paused';
+        }
+      }
+      const firstCardIndex = this.numbers.findIndex(
+        (item: { id: number }) => item.id === this.selectedCardFirst.id
+      );
       setTimeout(() => {
-        const firstCardIndex = this.numbers.findIndex(
-          (item: { id: number }) => item.id === this.selectedCardFirst.id
-        );
         if (this.selectedCardFirst.value === this.selectedCardSecond.value) {
-          this.matches += 1;
-          if (this.matches === 8) {
-            clearInterval(this.timerIntervalHandler);
-            this.animationBarProgressNode.style.animationPlayState = 'paused';
-          }
           this.numbers[firstCardIndex].class = 'match';
           this.numbers[cardIndex].class = 'match';
           this.selectedCardFirst = null;
